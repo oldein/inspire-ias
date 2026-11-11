@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INSPIRE Inter-annotator Agreement Study</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <main>
+
+    <section id="setup-screen">
+      <h1>Welcome to INSPIRE Inter-annotator Agreement Study</h1>
+
+      <p class="instructions"> You&#39;ll read article titles and abstracts, then assign labels.</p>
+
+      <label for="annotator-name">Your name:</label>
+      <input type="text" id="annotator-name" placeholder="Enter your name">
+      <label for="annotator-bckg">(Optional) Your background:</label>
+      <input type="text" id="annotator-bckg" placeholder="e.g. PhD in Physics, INSPIRE curator etc.">
+
+      <div id="task-section">
+        <p>What to annotate?</p>
+        <div class="chips">
+          <button class="chip" data-task="Relevance">Relevance</button>
+          <button class="chip" data-task="Subjects">Subjects</button>
+          <button class="chip" data-task="Both">Both</button>
+        </div>
+      </div>
+      <p class="instructions"> In "Relevance" mode you will decide whether each article belongs to INSPIRE. Please
+        select this option only if you are familiar with the <a
+          href="https://help.inspirehep.net/knowledge-base/content-policy/" target="_blank">Content Policy</a>.</p>
+
+      <div id="count-section">
+        <p>How many items to annotate?</p>
+        <div class="chips">
+          <button class="chip" data-count="50">50</button>
+          <button class="chip" data-count="100">100</button>
+          <button class="chip" data-count="200">200</button>
+          <button class="chip" data-count="300"> All (300)</button>
+        </div>
+      </div>
+
+      <button id="start-btn">Start</button>
+    </section>
+
+    <section id="annotation-screen" hidden>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+
+      <div class="article-card">
+        <h2 id="article-title"></h2>
+        <p id="article-abstract"></p>
+      </div>
+
+      <div id="relevance-labels" hidden>
+        <p class="label-header">Relevance:</p>
+        <p class="instructions">Select one option</p>
+        <div class="chips">
+          <button class="chip relevance-chip" data-label="Core">Core</button>
+          <button class="chip relevance-chip" data-label="Accept">Accept</button>
+          <button class="chip relevance-chip" data-label="Reject">Reject</button>
+        </div>
+      </div>
+
+      <div id="subjects-labels" hidden>
+        <p class="label-header">Subjects:</p>
+        <p class="instructions">Select all that apply</p>
+        <div class="chips subject-chips">
+          <button class="chip subject-chip" data-subject="Theory-HEP">Theory-HEP</button>
+          <button class="chip subject-chip" data-subject="Phenomenology-HEP">Phenomenology-HEP</button>
+          <button class="chip subject-chip" data-subject="Experiment-HEP">Experiment-HEP</button>
+          <button class="chip subject-chip" data-subject="Lattice">Lattice</button>
+          <button class="chip subject-chip" data-subject="Theory-Nucl">Theory-Nucl</button>
+          <button class="chip subject-chip" data-subject="Experiment-Nucl">Experiment-Nucl</button>
+          <button class="chip subject-chip" data-subject="Astrophysics">Astrophysics</button>
+          <button class="chip subject-chip" data-subject="Gravitation and Cosmology">Gravitation and Cosmology</button>
+          <button class="chip subject-chip" data-subject="Accelerators">Accelerators</button>
+          <button class="chip subject-chip" data-subject="Instrumentation">Instrumentation</button>
+          <button class="chip subject-chip" data-subject="Condensed Matter">Condensed Matter</button>
+          <button class="chip subject-chip" data-subject="Quantum Physics">Quantum Physics</button>
+          <button class="chip subject-chip" data-subject="Math and Math Physics">Math and Math Physics</button>
+          <button class="chip subject-chip" data-subject="Computing">Computing</button>
+          <button class="chip subject-chip" data-subject="Data Analysis and Statistics">Data Analysis and
+            Statistics</button>
+          <button class="chip subject-chip" data-subject="General Physics">General Physics</button>
+          <button class="chip subject-chip" data-subject="Other">Other</button>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button id="prev-btn">Back</button>
+        <button id="next-btn">Next</button>
+      </div>
+    </section>
+
+    <section id="done-screen" hidden>
+      <h1>Done!</h1>
+      <p id="done-message"></p>
+      <pre id="done-data"></pre>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
