@@ -104,6 +104,7 @@ function saveResponse(id) {
   const r = responses[id];
   const payload = {
     name: selected.name,
+    code: selected.code,
     task: selected.task,
     count: Number(selected.count),
     id: id,
