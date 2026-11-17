@@ -83,6 +83,15 @@ function showAnnotation(i) {
   progressFill.style.width = `${((i + 1) / total) * 100}%`;
   articleTitle.textContent = a.title;
   articleAbstract.textContent = a.abstract;
+  renderMathInElement(document.querySelector('.article-card'), {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '$', right: '$', display: false },
+      { left: '\\(', right: '\\)', display: false },
+      { left: '\\[', right: '\\]', display: true }
+    ],
+    throwOnError: false
+  });
 
   prevBtn.disabled = false;
   nextBtn.textContent = i === total - 1 ? 'Finish' : 'Next';
