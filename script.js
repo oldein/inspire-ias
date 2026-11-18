@@ -31,15 +31,22 @@ const responses = {};
 let currentIndex = 0;
 let articles = [];
 let selected = { name: '', code: '', count: null, task: null };
+
 /* FUNCTIONS */
 
+//from for file 
 // async function loadData() {
 //     const res = await fetch('data.json');
 //     articles = await res.json();
 //   }
 
 async function loadData() {
-  const params = new URLSearchParams({ count: selected.count, code: selected.code });
+  const params = new URLSearchParams({
+    count: selected.count,
+    code: selected.code,
+    name: selected.name,
+    task: selected.task
+  });
   const res = await fetch(`${DATA_URL}?${params}`);
   articles = await res.json();
 }
@@ -230,6 +237,11 @@ startBtn.addEventListener('click', async () => {
   startBtn.disabled = false;
   startBtn.textContent = 'Start';
 
+  if (articles.length === 0) {
+    greeting.textContent = 'Nothing left to annotate in this mode. Thank you!';
+    return;
+  }
+
   showAnnotation(0);
 });
 
@@ -293,11 +305,17 @@ nextBtn.addEventListener('click', () => {
   }
 });
 
-moreBtn.addEventListener('click', () => {
+moreBtn.addEventListener('click', async () => {
   doneScreen.hidden = true;
   setupScreen.hidden = false;
   step1.hidden = true;
   step2.hidden = false;
+
+  greeting.textContent = 'Updating your progress…';
+  const params = new URLSearchParams({ action: 'lookup', name: selected.name, code: selected.code });
+  const res = await fetch(`${DATA_URL}?${params}`);
+  const done = await res.json();
+  greeting.textContent = greetingText(selected.name, done);
 });
 
 try {
