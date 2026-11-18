@@ -150,8 +150,7 @@ button {
   font-style: normal;
 }
 
-#start-btn,
-#continue-btn {
+#start-btn, #continue-btn, #more-btn  {
   width: 100%;
   padding: 0.75rem;
   font-size: var(--font-m);
@@ -163,7 +162,7 @@ button {
 }
 
 #start-btn.ready,
-#continue-btn.ready {
+#continue-btn.ready, #more-btn {
   background: var(--accent);
   color: var(--on-color);
   border: 1.5px solid var(--accent);
@@ -175,7 +174,7 @@ button {
   cursor: wait;
 }
 
-#greeting {
+#greeting, #done-message {
   margin-top: 1.5rem;
   font-weight: bold;
 }

@@ -2,6 +2,8 @@
 const DATA_URL = 'https://script.google.com/macros/s/AKfycbxWiuoKYqARA1H8z7WX8u-jI7BfOGo5pO0cvUXu02ygesU-45WLcXRZsxeN0go6Ksyb/exec'
 
 /* OBJECT REFERENCES */
+const step1 = document.getElementById('setup-step1');
+const moreBtn = document.getElementById('more-btn');
 const codeInput = document.getElementById('access-code');
 const setupError = document.getElementById('setup-error');
 const startBtn = document.getElementById('start-btn');
@@ -19,7 +21,6 @@ const articleAbstract = document.getElementById('article-abstract');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const doneMessage = document.getElementById('done-message');
-const doneData = document.getElementById('done-data');
 const relevanceLabels = document.getElementById('relevance-labels');
 const subjectsLabels = document.getElementById('subjects-labels');
 const relevanceChips = document.querySelectorAll('.relevance-chip');
@@ -132,7 +133,6 @@ function showDone() {
   annotationScreen.hidden = true;
   doneScreen.hidden = false;
   doneMessage.textContent = `Collected ${Object.keys(responses).length} labels. Thanks ${selected.name}!`;
-  doneData.textContent = JSON.stringify(responses, null, 2);
 }
 
 /* KIND OF INIT */
@@ -173,6 +173,12 @@ continueBtn.addEventListener('click', async () => {
   }
 
   selected.code = code;
+
+  try {
+    localStorage.setItem('iaa-name', name);
+    localStorage.setItem('iaa-code', code);
+  } catch { }
+
   continueBtn.hidden = true;
   greeting.textContent = greetingText(name, result);
   step2.hidden = false;
@@ -286,6 +292,19 @@ nextBtn.addEventListener('click', () => {
     showAnnotation(currentIndex + 1);
   }
 });
+
+moreBtn.addEventListener('click', () => {
+  doneScreen.hidden = true;
+  setupScreen.hidden = false;
+  step1.hidden = true;
+  step2.hidden = false;
+});
+
+try {
+  nameInput.value = localStorage.getItem('iaa-name') || '';
+  codeInput.value = localStorage.getItem('iaa-code') || '';
+} catch { }
+continueBtn.classList.toggle('ready', !!(nameInput.value.trim() && codeInput.value.trim()));
 
 
 

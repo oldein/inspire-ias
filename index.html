@@ -15,49 +15,51 @@
   <main>
 
     <section id="setup-screen">
-      <h1><img id="logo" src="inspire.png" alt="INSPIRE logo"> Inter-annotator Agreement Study</h1>
+      <div id="setup-step1">
+        <h1><img id="logo" src="inspire.png" alt="INSPIRE logo"> Inter-annotator Agreement Study</h1>
 
-      <p class="instructions"> You&#39;ll read article titles and abstracts, then assign labels. Your answers are saved
-        automatically after each item, so you can stop anytime and continue later.</p>
+        <p class="instructions"> You&#39;ll read article titles and abstracts, then assign labels. Your answers are
+          saved
+          automatically after each item, so you can stop anytime and continue later.</p>
 
-      <label for="access-code">Access code:</label>
-      <input type="text" id="access-code" placeholder="Enter your code">
+        <label for="access-code">Access code:</label>
+        <input type="text" id="access-code" placeholder="Enter your code">
 
-      <label for="annotator-name">Your name or alias:</label>
-      <input type="text" id="annotator-name" placeholder="e.g. edward witten">
-      <p class="hints">This is your identifier. Enter it the same way each time to continue where you left off
-        (capitalization doesn't matter).</p>
+        <label for="annotator-name">Your name or alias:</label>
+        <input type="text" id="annotator-name" placeholder="e.g. edward witten">
+        <p class="hints">This is your identifier. Enter it the same way each time to continue where you left off
+          (capitalization doesn't matter).</p>
 
-      <p id="setup-error" class="hints" hidden></p>
-      <button id="continue-btn">Continue</button>
-
+        <p id="setup-error" class="hints" hidden></p>
+        <button id="continue-btn">Continue</button>
+      </div>
       <div id="setup-step2" hidden>
         <div id="task-section">
           <p id="greeting"></p>
 
           <p>What to annotate?</p>
           <div class="chips">
-            <button class="chip" data-task="Relevance">Relevance</button>
-            <button class="chip" data-task="Subjects">Subjects</button>
-            <button class="chip" data-task="Both">Both</button>
+            <button class="chip" data-task="Both">Default</button>
+            <button class="chip" data-task="Subjects">Only subjects</button>
+            <button class="chip" data-task="Relevance">Only relevance</button>
           </div>
-        </div>
-        <p class="hints"> In "Relevance" mode you will decide whether each article belongs to INSPIRE. Please
-          select this option only if you are familiar with the <a
-            href="https://help.inspirehep.net/knowledge-base/content-policy/" target="_blank">Content Policy</a>.</p>
+          <p class="hints"> Default mode includes both Relevance and Subjects annotation. Relevance labels require
+            familiarity with <a href="https://help.inspirehep.net/knowledge-base/content-policy/"
+              target="_blank">INSPIRE Content Policy</a>. If you're not familiar, please, select "Only subjects".</p>
 
-        <div id="count-section">
-          <p>How many items to annotate?</p>
-          <div class="chips">
-            <button class="chip" data-count="50">50</button>
-            <button class="chip" data-count="100">100</button>
-            <button class="chip" data-count="200">200</button>
-            <button class="chip" data-count="300"> All (300)</button>
+          <div id="count-section">
+            <p>How many items to annotate?</p>
+            <div class="chips">
+              <button class="chip" data-count="10">10</button>
+              <button class="chip" data-count="50">50</button>
+              <button class="chip" data-count="100">100</button>
+              <button class="chip" data-count="9999">All remaining</button>
+            </div>
+            <p class="hints">There are around 300 articles in total. The more you annotate, the better!</p>
           </div>
-        </div>
 
-        <button id="start-btn">Start</button>
-      </div>
+          <button id="start-btn">Start</button>
+        </div>
     </section>
 
     <section id="annotation-screen" hidden>
@@ -114,7 +116,7 @@
     <section id="done-screen" hidden>
       <h1>Done!</h1>
       <p id="done-message"></p>
-      <pre id="done-data"></pre>
+      <button id="more-btn">Annotate more</button>
     </section>
 
   </main>
